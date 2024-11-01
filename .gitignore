@@ -1,0 +1,9 @@
+# Tailwind and Node.js
+node_modules/
+.cache/
+
+*.map
+
+# Tailwind configuration files
+tailwind.config.js
+postcss.config.js
