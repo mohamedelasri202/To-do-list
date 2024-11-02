@@ -74,29 +74,16 @@
                 </div>
              </div>
         </div>
-        <div class="bg-slate-500">
-            <div class="grid grid-cols-3 mt-8 gap-4">
-                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll">
-                    <div class="text-center">
-                        <h3>To Do</h3>
-                    </div>
-                    <div id="taskContainerToDo" class="flex flex-col"></div>
-                </div>
-                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll">
-                    <div class="text-center">
-                        <h3>Doing</h3>
-                    </div>
-                    <div id="taskContainerDoing" class="flex flex-col"></div>
-                </div>
-                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll">
-                    <div class="text-center">
-                        <h3>Done</h3>
-                    </div>
-                    <div id="taskContainerDone" class="flex flex-col"></div>
-                </div>
-            </div>     
+        <div class="bg-slate-500 grid grid-cols-3 text-center grid-rows-[10vh_70vh] ">
+           <div class="bg-orange-300 rounded-md mt-4  flex items-center justify-center">TO DO</div> 
+           <div>2</div>  
+           <div>3</div>  
+           <div class=" bg-white ">4</div> 
+           <div>5</div>  
+           <div>6</div>  
         </div>
-         <div id="error">this place is required</div>
+    
+         <div id="error" class="hidden">this place is required</div>
         <!-- The Form -->
         <div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%] bg-neutral-950 rounded-[20px] h-[800px] items-center">
             <form id="taskForm" class="max-w-sm mx-auto" onsubmit="addTask(event)">
