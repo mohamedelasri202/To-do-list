@@ -96,7 +96,7 @@
                 </div>
             </div>     
         </div>
-        
+         <div id="error">this place is required</div>
         <!-- The Form -->
         <div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%] bg-neutral-950 rounded-[20px] h-[800px] items-center">
             <form id="taskForm" class="max-w-sm mx-auto" onsubmit="addTask(event)">
@@ -105,121 +105,151 @@
                 </div>
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                    <input type="text" id="taskTitle" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input type="text" id="taskTitle" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
                 
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                <select id="taskStatus" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <option selected disabled>Choose a status</option>
+                    <option value="To Do">To Do</option>
+                    <option value="Doing">Doing</option>
+                    <option value="Done">Done</option>
+                </select>
+                
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priority</label>
-                <select id="taskPriority" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Choose the priority</option>
+                <select id="taskPriority" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <option selected disabled>Choose the priority</option>
                     <option value="P1">P1</option>
                     <option value="P2">P2</option>
                     <option value="P3">P3</option>
                 </select>
                 
                 <div><label for="due-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due Date:</label>
-                <input type="date" id="due-date" name="due-date" required class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"></div> 
+                <input type="date" id="due-date" name="due-date" required class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></div> 
                 
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <textarea id="taskDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
-        
+                <textarea id="taskDescription" rows="4" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                
                 <button type="submit" class="w-full mt-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Task</button>
                 <button type="button" onclick="toggleForm()" class="w-full mt-3 text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancel</button>
             </form>
         </div>
     </div>
-</section>
+   </section>
 
-<script>
-    const openFormButton = document.getElementById("openFormButton");
-    const myForm = document.getElementById("myform");
+   <script>
+   // Function to toggle the visibility of the form
+   function toggleForm() {
+        const form = document.getElementById('myform');
+        form.classList.toggle('hidden');
+    }
 
-    // Function to toggle the visibility of the task form
-    openFormButton.addEventListener("click", () => {
-        myForm.classList.toggle("hidden"); // Show or hide the form
-    });
 
-    // Function to add a task
-    function addTask(event) {
-        event.preventDefault(); // Prevent form submission
-
-        // Get form values
+       // Validation function to check form inputs
+       function validateForm() {
         const title = document.getElementById('taskTitle').value;
-        const status = document.getElementById('taskStatus').value;
         const description = document.getElementById('taskDescription').value;
-        const dueDate = document.getElementById('dueDate').value;
+        const dueDate = document.getElementById('due-date').value;
+        const priority = document.getElementById('taskPriority').value;
+        const status = document.getElementById('taskStatus').value;
 
-        // Create a new card element
-        const card = createCard(title,dueDate, description);
+        const titleRegex = /^[A-Za-z\s]{1,20}$/;
+        let isValid = true;
+        let errorMessage = "";
 
-        // Append the card to the appropriate container based on the status
-        switch (status) {
-            case "To Do":
-                document.getElementById('taskContainerToDo').appendChild(card);
-                break;
-            case "Doing":
-                document.getElementById('taskContainerDoing').appendChild(card);
-                break;
-            case "Done":
-                document.getElementById('taskContainerDone').appendChild(card);
-                break;
-            default:
-                console.warn("Invalid status."); // Handle unexpected status
-                break;
+        if (!title.match(titleRegex)) {
+            errorMessage += "Title must only contain letters and be 1-20 characters long.\n";
+            isValid = false;
         }
 
-        // Clear form fields and hide the form
-        document.getElementById('taskForm').reset();
-        myForm.classList.add("hidden");
-    }
-
-    // Function to create a task card
-    function createCard(title,Priority, description,dueDate) {
-        const card = document.createElement('div');
-        card.className = 'bg-slate-700 w-64 h-40 flex flex-col justify-between rounded-3xl mb-4 p-4';
-
-        card.innerHTML = `
-            <div class="flex justify-between">
-                <h3 class="text-white font-bold">${title}</h3>
-                <button class="text-blue-500">${dueDate}}</button>
-                
-            </div>
-            <div class="text-gray-200"><p>${description}</p></div>
-            <select class="status-selector mt-2" style="width: 100%">
-                <option value="To Do" ${status === "To Do" ? "selected" : ""}>To Do</option>
-                <option value="Doing" ${status === "Doing" ? "selected" : ""}>Doing</option>
-                <option value="Done" ${status === "Done" ? "selected" : ""}>Done</option>
-            </select>
-        `;
-
-        // Add an event listener for status change
-        card.querySelector('.status-selector').addEventListener('change', function() {
-            const newStatus = this.value; // Get the selected status
-            card.remove(); // Remove the card from its current position
-            appendCardToContainer(card, newStatus); // Re-add the card to the new container
-        });
-
-        return card; // Return the created card element
-    }
-
-    // Function to append the card to the correct container based on new status
-    function appendCardToContainer(card, status) {
-        switch (status) {
-            case "To Do":
-                document.getElementById('taskContainerToDo').appendChild(card);
-                break;
-            case "Doing":
-                document.getElementById('taskContainerDoing').appendChild(card);
-                break;
-            case "Done":
-                document.getElementById('taskContainerDone').appendChild(card);
-                break;
-            default:
-                console.warn("Invalid status."); // Handle unexpected status
-                break;
+        if (description.length < 2 || description.length > 80) {
+            errorMessage += "Description must be between 2 and 80 characters.\n";
+            isValid = false;
         }
+
+        if (!dueDate) {
+            errorMessage += "Please select a due date.\n";
+            isValid = false;
+        }
+
+        if (!priority) {
+            errorMessage += "Please select a priority level.\n";
+            isValid = false;
+        }
+
+        if (!status) {
+            errorMessage += "Please select a status.\n";
+            isValid = false;
+        }
+
+        if (!isValid) {
+            alert(errorMessage);
+        }
+
+        return isValid;
     }
-</script>
+
+    function addTask(event) {
+        event.preventDefault();
+
+        if (!validateForm()) {
+            return;
+        }
 
 
+
+
+
+
+
+
+           // Get form values
+           const title = document.getElementById('taskTitle').value;
+           const priority = document.getElementById('taskPriority').value;
+           const description = document.getElementById('taskDescription').value;
+           const dueDate = document.getElementById('due-date').value;
+           const status = document.getElementById('taskStatus').value; // Get selected status
+
+           // Create a new card element
+           const card = createCard(title, priority, description, dueDate);
+
+           // Append the card to the appropriate container based on the selected status
+           if (status === "To Do") {
+               document.getElementById('taskContainerToDo').appendChild(card);
+           } else if (status === "Doing") {
+               document.getElementById('taskContainerDoing').appendChild(card);
+           } else if (status === "Done") {
+               document.getElementById('taskContainerDone').appendChild(card);
+           }
+
+           // Clear form fields and hide the form
+           document.getElementById('taskForm').reset();
+           toggleForm();
+       }
+
+       // Function to create a task card
+       function createCard(title, priority, description, dueDate) {
+           const card = document.createElement('div');
+           card.className = 'bg-slate-700 w-64 h-40 flex flex-col justify-between rounded-3xl mb-4 p-4';
+
+           card.innerHTML = `
+               <div class="flex justify-between">
+                   <h3 class="text-white font-bold">${title}</h3>
+                   <span class="text-yellow-300">${priority}</span> <!-- Displaying priority -->
+               </div>
+               <div class="text-gray-200"><p>${description}</p></div>
+               <span class="text-gray-400">Due: ${dueDate}</span> <!-- Displaying due date -->
+           `;
+
+           return card; // Return the created card element
+       }
+       
+            
+       
+
+
+
+
+   </script>
 </body>
 </html>
