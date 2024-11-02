@@ -138,118 +138,131 @@
    </section>
 
    <script>
-   // Function to toggle the visibility of the form
-   function toggleForm() {
-        const form = document.getElementById('myform');
-        form.classList.toggle('hidden');
-    }
-
-
-       // Validation function to check form inputs
-       function validateForm() {
-        const title = document.getElementById('taskTitle').value;
-        const description = document.getElementById('taskDescription').value;
-        const dueDate = document.getElementById('due-date').value;
-        const priority = document.getElementById('taskPriority').value;
-        const status = document.getElementById('taskStatus').value;
-
-        const titleRegex = /^[A-Za-z\s]{1,20}$/;
-        let isValid = true;
-        let errorMessage = "";
-
-        if (!title.match(titleRegex)) {
-            errorMessage += "Title must only contain letters and be 1-20 characters long.\n";
-            isValid = false;
-        }
-
-        if (description.length < 2 || description.length > 80) {
-            errorMessage += "Description must be between 2 and 80 characters.\n";
-            isValid = false;
-        }
-
-        if (!dueDate) {
-            errorMessage += "Please select a due date.\n";
-            isValid = false;
-        }
-
-        if (!priority) {
-            errorMessage += "Please select a priority level.\n";
-            isValid = false;
-        }
-
-        if (!status) {
-            errorMessage += "Please select a status.\n";
-            isValid = false;
-        }
-
-        if (!isValid) {
-            alert(errorMessage);
-        }
-
-        return isValid;
-    }
-
-    function addTask(event) {
-        event.preventDefault();
-
-        if (!validateForm()) {
-            return;
-        }
-
-
-
-
-
-
-
-
-           // Get form values
-           const title = document.getElementById('taskTitle').value;
-           const priority = document.getElementById('taskPriority').value;
-           const description = document.getElementById('taskDescription').value;
-           const dueDate = document.getElementById('due-date').value;
-           const status = document.getElementById('taskStatus').value; // Get selected status
-
-           // Create a new card element
-           const card = createCard(title, priority, description, dueDate);
-
-           // Append the card to the appropriate container based on the selected status
-           if (status === "To Do") {
-               document.getElementById('taskContainerToDo').appendChild(card);
-           } else if (status === "Doing") {
-               document.getElementById('taskContainerDoing').appendChild(card);
-           } else if (status === "Done") {
-               document.getElementById('taskContainerDone').appendChild(card);
-           }
-
-           // Clear form fields and hide the form
-           document.getElementById('taskForm').reset();
-           toggleForm();
-       }
-
-       // Function to create a task card
-       function createCard(title, priority, description, dueDate) {
-           const card = document.createElement('div');
-           card.className = 'bg-slate-700 w-64 h-40 flex flex-col justify-between rounded-3xl mb-4 p-4';
-
-           card.innerHTML = `
-               <div class="flex justify-between">
-                   <h3 class="text-white font-bold">${title}</h3>
-                   <span class="text-yellow-300">${priority}</span> <!-- Displaying priority -->
-               </div>
-               <div class="text-gray-200"><p>${description}</p></div>
-               <span class="text-gray-400">Due: ${dueDate}</span> <!-- Displaying due date -->
-           `;
-
-           return card; // Return the created card element
-       }
-       
-            
-       
-
-
-
-
-   </script>
+    // Function to toggle the visibility of the form
+    function toggleForm() {
+         const form = document.getElementById('myform');
+         form.classList.toggle('hidden');
+     }
+ 
+     // Validation function to check form inputs
+     function validateForm() {
+         const title = document.getElementById('taskTitle').value;
+         const description = document.getElementById('taskDescription').value;
+         const dueDate = document.getElementById('due-date').value;
+         const priority = document.getElementById('taskPriority').value;
+         const status = document.getElementById('taskStatus').value;
+ 
+         const titleRegex = /^[A-Za-z\s]{1,20}$/;
+         let isValid = true;
+         let errorMessage = "";
+ 
+         if (!title.match(titleRegex)) {
+             errorMessage += "Title must only contain letters and be 1-20 characters long.\n";
+             isValid = false;
+         }
+ 
+         if (description.length < 2 || description.length > 80) {
+             errorMessage += "Description must be between 2 and 80 characters.\n";
+             isValid = false;
+         }
+ 
+         if (!dueDate) {
+             errorMessage += "Please select a due date.\n";
+             isValid = false;
+         }
+ 
+         if (!priority) {
+             errorMessage += "Please select a priority level.\n";
+             isValid = false;
+         }
+ 
+         if (!status) {
+             errorMessage += "Please select a status.\n";
+             isValid = false;
+         }
+ 
+         if (!isValid) {
+             alert(errorMessage);
+         }
+ 
+         return isValid;
+     }
+ 
+     // Function to add a task
+     function addTask(event) {
+         event.preventDefault();
+ 
+         if (!validateForm()) {
+             return;
+         }
+ 
+         // Get form values
+         const title = document.getElementById('taskTitle').value;
+         const priority = document.getElementById('taskPriority').value;
+         const description = document.getElementById('taskDescription').value;
+         const dueDate = document.getElementById('due-date').value;
+         const status = document.getElementById('taskStatus').value;
+ 
+         // Create a new card element
+         const card = createCard(title, priority, description, dueDate);
+ 
+         // Append the card to the appropriate container based on the selected status
+         let container;
+         if (status === "To Do") {
+             container = document.getElementById('taskContainerToDo');
+         } else if (status === "Doing") {
+             container = document.getElementById('taskContainerDoing');
+         } else if (status === "Done") {
+             container = document.getElementById('taskContainerDone');
+         }
+ 
+         if (container) {
+             container.appendChild(card);
+             sortTasksByPriority(container);  // Sort tasks in the container by priority
+         }
+ 
+         // Clear form fields and hide the form
+         document.getElementById('taskForm').reset();
+         toggleForm();
+     }
+ 
+     // Function to create a task card
+     function createCard(title, priority, description, dueDate) {
+         const card = document.createElement('div');
+         card.className = 'bg-slate-700 w-64 h-40 flex flex-col justify-between rounded-3xl mb-4 p-4';
+         card.setAttribute('data-priority', priority);  // Add priority attribute for sorting
+ 
+         card.innerHTML = `
+             <div class="flex justify-between">
+                 <h3 class="text-white font-bold">${title}</h3>
+                 <span class="text-yellow-300">${priority}</span>
+             </div>
+             <div class="text-gray-200"><p>${description}</p></div>
+             <span class="text-gray-400">Due: ${dueDate}</span>
+         `;
+ 
+         return card;
+     }
+ 
+     // Function to sort tasks in each container by priority
+     function sortTasksByPriority(container) {
+         // Convert HTMLCollection to an array to sort the tasks
+         const cards = Array.from(container.children);
+ 
+         // Sort cards based on priority attribute
+         cards.sort((a, b) => {
+             const priorityA = a.getAttribute('data-priority');
+             const priorityB = b.getAttribute('data-priority');
+             
+             // Define order: P1 (highest), P2, P3 (lowest)
+             const priorityOrder = { 'P1': 1, 'P2': 2, 'P3': 3 };
+             return priorityOrder[priorityA] - priorityOrder[priorityB];
+         });
+ 
+         // Append sorted cards back into the container
+         cards.forEach(card => container.appendChild(card));
+     }
+ </script>
+ 
 </body>
 </html>
