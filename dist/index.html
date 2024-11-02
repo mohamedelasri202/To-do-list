@@ -7,339 +7,219 @@
     <link rel="stylesheet" href="../src/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-      /* Custom utility to hide scrollbars while keeping scrolling enabled */
-.scrollbar-hidden {
-    scrollbar-width: none; /* Firefox */
-}
+        /* Custom utility to hide scrollbars while keeping scrolling enabled */
+        .scrollbar-hidden {
+            scrollbar-width: none; /* Firefox */
+        }
 
-.scrollbar-hidden::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
-
+        .scrollbar-hidden::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
     </style>
-
 </head>
 <body>
    <header class="flex  bg-indigo-400 h-[70px] justify-around items-center">
     <img src="téléchargement-removebg-preview.png" alt="" class="h-11">
     <h1 class=" w-[370px] text-[24px] font-bold">TO DO List</h1>
     <div class="flex items-center w-full sm:w-[600px] bg-white h-[40px] rounded-[20px] px-3">
-    <i class="fa-solid fa-magnifying-glass text-gray-500 mr-2"></i>
-    <input type="text" placeholder="search" class="w-full h-full outline-none">
-</div>
-   
+        <i class="fa-solid fa-magnifying-glass text-gray-500 mr-2"></i>
+        <input type="text" placeholder="search" class="w-full h-full outline-none">
+    </div>
    </header>
    <section>
-    <div class=" h-screen grid grid-cols-[400px_1fr] " >
-        
+    <div class=" h-screen grid grid-cols-[400px_1fr] ">
         <div class="bg-indigo-700 ">
             <div class="top">
-                <div class="bg-indigo-500 flex justify-between items-center mt-2 h-11 rounded mr-3 ml-3  ">
-                    <h3 class="text-lg pl-7 " >Menu</h3>
+                <div class="bg-indigo-500 flex justify-between items-center mt-2 h-11 rounded mr-3 ml-3">
+                    <h3 class="text-lg pl-7">Menu</h3>
                     <i class="fa-solid fa-ellipsis pr-8"></i>
                 </div>
 
                 <h4 class="mt-3 pl-3 text-lg">tasks</h4>
-                <div class=" ml-8 mr-8 flex flex-col justify-between h-52 pt-3  ">
-                    <div class="flex justify-between  bg-indigo-800 h-10 items-center rounded-lg">
+                <div class="ml-8 mr-8 flex flex-col justify-between h-52 pt-3">
+                    <div class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg">
                         <p><i class="fa-solid fa-minus"></i> <span>today</span></p>
                         <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
-                        </div>
+                    </div>
         
-                        <div class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg">
-                            <p><i class="fa-solid fa-grip-lines"></i><span>Upcoming</span></p>
-                            <p  class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
-                            </div>
+                    <div class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg">
+                        <p><i class="fa-solid fa-grip-lines"></i><span>Upcoming</span></p>
+                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
+                    </div>
 
-                            <div class="flex justify-between   bg-indigo-800 h-10 items-center rounded-lg">
-                                <p><i class="fa-solid fa-calendar-days"></i> <span>Calender</span></p>
-                                <p  class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
-                            </div>
-
-                
+                    <div class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg">
+                        <p><i class="fa-solid fa-calendar-days"></i> <span>Calender</span></p>
+                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>    
+                    </div>
                 </div>
-                        
-            
              </div>
              <div class=" bottom mt-16">
-                
-                <h2 class="text-lg pl-3  mb-5">Lists</h2>
+                <h2 class="text-lg pl-3 mb-5">Lists</h2>
                 <div class="bg-slate-50 flex flex-col h-48 justify-around mr-8 ml-8 rounded-[20px]">
                     <div class="flex justify-between mr-3">
                         <p class="bg-red-600 w-14 rounded-[20px] ml-3 text-center">P1</p>
-                         <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
-                        </div>
+                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
+                    </div>
                     <div class="flex justify-between mr-3">
                         <p class="bg-orange-600 w-14 rounded-[20px] ml-3 text-center">P2</p>
                         <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
                     </div>
-                    
-                    
                     <div class="flex justify-between mr-3">
                         <p class="bg-green-600 w-14 rounded-[20px] ml-3 text-center">P3</p>
-                        <p class="bg-slate-300 rounded-[20px] w-12 text-center"  >12</p>    
+                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>    
                     </div>
                     <div class="bg-slate-600 text-center mr-14 ml-14 h-12 flex justify-around items-center rounded-[20px]">
-                       
-                        <button id="openFormButton" type="button" class="text-lg :hover:bg-slate-600"><i class="fa-solid fa-plus"></i>  add a list</button>
+                        <button id="openFormButton" type="button" class="text-lg hover:bg-slate-600" onclick="toggleForm()"> <i class="fa-solid fa-plus"></i> add a list</button>
                     </div>
                 </div>
-
              </div>
-         
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-
-
-
         <div class="bg-slate-500">
-
-
-            <div class="grid grid-cols-3 mt-8 gap-4 ">
-                <!-- To Do Column -->
-                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll ">
+            <div class="grid grid-cols-3 mt-8 gap-4">
+                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll">
                     <div class="text-center">
                         <h3>To Do</h3>
                     </div>
-                    <!-- New container for "To Do" tasks -->
                     <div id="taskContainerToDo" class="flex flex-col"></div>
                 </div>
-            
-                <!-- Doing Column -->
-                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll ">
+                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll">
                     <div class="text-center">
                         <h3>Doing</h3>
                     </div>
-                    <!-- New container for "Doing" tasks -->
                     <div id="taskContainerDoing" class="flex flex-col"></div>
                 </div>
-            
-                <!-- Done Column -->
-                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll ">
+                <div class="bg-white h-[500px] scrollbar-hidden overflow-y-scroll">
                     <div class="text-center">
                         <h3>Done</h3>
                     </div>
-                    <!-- New container for "Done" tasks -->
                     <div id="taskContainerDone" class="flex flex-col"></div>
                 </div>
-            </div>
-            
+            </div>     
+        </div>
+        
+        <!-- The Form -->
+        <div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%] bg-neutral-950 rounded-[20px] h-[800px] items-center">
+            <form id="taskForm" class="max-w-sm mx-auto" onsubmit="addTask(event)">
+                <div class="text-white font-bold text-center text-lg">
+                    <h2>Add a New Task</h2>
                 </div>
-
-
-
-
-<!-- The Form -->
-<div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%] bg-neutral-950 rounded-[20px] h-[600px] items-center">
-    <form id="taskForm" class="max-w-sm mx-auto" onsubmit="addTask(event)">
-        <div class="text-white font-bold text-center text-lg">
-            <h2>Add a New Task</h2>
-        </div>
-        <div>
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-            <input type="text" id="taskTitle" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        </div>
-        
-        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-        <select id="taskStatus" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option selected>Choose a status</option>
-            <option value="To Do">To Do</option>
-            <option value="Doing">Doing</option>
-            <option value="Done">Done</option>
-        </select>
-        
-        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priority</label>
-        <select id="taskPriority" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option selected>Choose the priority</option>
-            <option value="P1">P1</option>
-            <option value="P2">P2</option>
-            <option value="P3">P3</option>
-        </select>
-        
-        <div>
-            <input type="date" id="dueDate" class="block mb-6">
-        </div>
-        
-        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-        <textarea id="taskDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
-        
-        <div class="bg-white">
-            <button id="btn" type="submit" class="bg-blue-500 text-white p-2 rounded">Submit</button>
-        </div>
-    </form>
-</div>
-
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                    <input type="text" id="taskTitle" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
                 
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priority</label>
+                <select id="taskPriority" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Choose the priority</option>
+                    <option value="P1">P1</option>
+                    <option value="P2">P2</option>
+                    <option value="P3">P3</option>
+                </select>
+                
+                <div><label for="due-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due Date:</label>
+                <input type="date" id="due-date" name="due-date" required class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"></div> 
+                
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                <textarea id="taskDescription" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+        
+                <button type="submit" class="w-full mt-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Task</button>
+                <button type="button" onclick="toggleForm()" class="w-full mt-3 text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancel</button>
+            </form>
+        </div>
+    </div>
+</section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              
-                    
-                </div>
-
-              
-                    
-                  
-                    <script>
-                        
-
-    document.addEventListener("DOMContentLoaded", function() {
-     const openFormButton = document.getElementById("openFormButton");
+<script>
+    const openFormButton = document.getElementById("openFormButton");
     const myForm = document.getElementById("myform");
 
-  openFormButton.addEventListener("click", () => {
-    resetForm();
-    myForm.classList.toggle("hidden"); // Toggle form visibility
-  });
+    // Function to toggle the visibility of the task form
+    openFormButton.addEventListener("click", () => {
+        myForm.classList.toggle("hidden"); // Show or hide the form
+    });
 
-  let currentEditTask = null; // To store the task being edited
+    // Function to add a task
+    function addTask(event) {
+        event.preventDefault(); // Prevent form submission
 
-  function addTask(event) {
-    event.preventDefault();
+        // Get form values
+        const title = document.getElementById('taskTitle').value;
+        const status = document.getElementById('taskStatus').value;
+        const description = document.getElementById('taskDescription').value;
+        const dueDate = document.getElementById('dueDate').value;
 
-    // Get form values
-    const title = document.getElementById("taskTitle").value;
-    const status = document.getElementById("taskStatus").value;
-    const priority = document.getElementById("taskPriority").value;
-    const dueDate = document.getElementById("dueDate").value;
-    const description = document.getElementById("taskDescription").value;
+        // Create a new card element
+        const card = createCard(title,dueDate, description);
 
-    // Check if this is a new task or an edit
-    if (currentEditTask) {
-      updateTask(currentEditTask, title, status, priority, dueDate, description);
-      currentEditTask = null; // Reset the edit state
-    } else {
-      createTaskCard(title, status, priority, dueDate, description);
+        // Append the card to the appropriate container based on the status
+        switch (status) {
+            case "To Do":
+                document.getElementById('taskContainerToDo').appendChild(card);
+                break;
+            case "Doing":
+                document.getElementById('taskContainerDoing').appendChild(card);
+                break;
+            case "Done":
+                document.getElementById('taskContainerDone').appendChild(card);
+                break;
+            default:
+                console.warn("Invalid status."); // Handle unexpected status
+                break;
+        }
+
+        // Clear form fields and hide the form
+        document.getElementById('taskForm').reset();
+        myForm.classList.add("hidden");
     }
 
-    document.getElementById("taskForm").reset();
-    myForm.classList.add("hidden"); // Hide form after adding/updating a task
-  }
+    // Function to create a task card
+    function createCard(title,Priority, description,dueDate) {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-700 w-64 h-40 flex flex-col justify-between rounded-3xl mb-4 p-4';
 
-  function createTaskCard(title, status, priority, dueDate, description) {
-    const card = document.createElement("div");
-    card.className = "bg-slate-700 w-64 h-40 flex flex-col justify-between rounded-3xl mb-4 p-4";
-    card.dataset.status = status; // Store the status as a data attribute
-
-    card.innerHTML = `
-      <div class="flex justify-between">
-          <h3 class="text-white font-bold">${title}</h3>
-          <button class="text-blue-500" onclick="editTask(this)">edit</button>
-      </div>
-      <div class="text-gray-200"><p>${description}</p></div>
-      <div class="flex justify-between mt-2">
-          <p class="bg-red-600 text-center rounded-[20px] px-2 text-white">${priority}</p>
-          <p class="bg-slate-400 text-gray-200 rounded-[20px] px-2">${dueDate}</p>
-      </div>
-    `;
-
-    // Append the card to the appropriate column based on the status
-    addTaskToSection(card, status);
-  }
-
-  function addTaskToSection(card, status) {
-    // Remove the task from any existing parent
-    card.parentNode?.removeChild(card);
-
-    // Append to the correct section based on status
-    switch (status) {
-      case "To Do":
-        document.getElementById("taskContainerToDo").appendChild(card);
-        break;
-      case "Doing":
-        document.getElementById("taskContainerDoing").appendChild(card);
-        break;
-      case "Done":
-        document.getElementById("taskContainerDone").appendChild(card);
-        break;
-      default:
-        console.warn("Invalid status");
-        break;
-    }
-  }
-
-  function editTask(editButton) {
-    const card = editButton.closest(".task");
-    currentEditTask = card;
-
-    // Fill form with current task values
-    document.getElementById("taskTitle").value = card.querySelector("h3").textContent;
-    document.getElementById("taskStatus").value = card.dataset.status;
-    document.getElementById("taskPriority").value = card.querySelector("p.bg-red-600").textContent;
-    document.getElementById("dueDate").value = card.querySelector("p.bg-slate-400").textContent;
-    document.getElementById("taskDescription").value = card.querySelector("div.text-gray-200 p").textContent;
-
-    myForm.classList.remove("hidden"); // Show the form
-  }
-
-  function updateTask(card, title, status, priority, dueDate, description) {
-    // Update the card content
-    card.querySelector("h3").textContent = title;
-    card.querySelector("div.text-gray-200 p").textContent = description;
-    card.querySelector("p.bg-red-600").textContent = priority;
-    card.querySelector("p.bg-slate-400").textContent = dueDate;
-    card.dataset.status = status;
-
-    // Move the card to the correct section based on new status
-    addTaskToSection(card, status);
-  }
-
-  function resetForm() {
-    document.getElementById("taskForm").reset();
-    currentEditTask = null; // Reset edit mode
-  }
-
-  // Attach addTask function to the form's submit event
-  document.getElementById("taskForm").addEventListener("submit", addTask);
-});
- </script>
+        card.innerHTML = `
+            <div class="flex justify-between">
+                <h3 class="text-white font-bold">${title}</h3>
+                <button class="text-blue-500">${dueDate}}</button>
                 
-                </body>
-                </html>
+            </div>
+            <div class="text-gray-200"><p>${description}</p></div>
+            <select class="status-selector mt-2" style="width: 100%">
+                <option value="To Do" ${status === "To Do" ? "selected" : ""}>To Do</option>
+                <option value="Doing" ${status === "Doing" ? "selected" : ""}>Doing</option>
+                <option value="Done" ${status === "Done" ? "selected" : ""}>Done</option>
+            </select>
+        `;
+
+        // Add an event listener for status change
+        card.querySelector('.status-selector').addEventListener('change', function() {
+            const newStatus = this.value; // Get the selected status
+            card.remove(); // Remove the card from its current position
+            appendCardToContainer(card, newStatus); // Re-add the card to the new container
+        });
+
+        return card; // Return the created card element
+    }
+
+    // Function to append the card to the correct container based on new status
+    function appendCardToContainer(card, status) {
+        switch (status) {
+            case "To Do":
+                document.getElementById('taskContainerToDo').appendChild(card);
+                break;
+            case "Doing":
+                document.getElementById('taskContainerDoing').appendChild(card);
+                break;
+            case "Done":
+                document.getElementById('taskContainerDone').appendChild(card);
+                break;
+            default:
+                console.warn("Invalid status."); // Handle unexpected status
+                break;
+        }
+    }
+</script>
+
+
+</body>
+</html>
