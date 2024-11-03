@@ -75,78 +75,22 @@
              </div>
         </div>
         <div class="bg-slate-500 grid grid-cols-3  gap-x-8 grid-rows-[10vh_70vh] ">
-           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center">To Do</div> 
-           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center">Doing</div> 
-           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center">Done</div> 
-           <!--the card--> 
-           <div class=" bg-indigo-400 flex flex-col ">
-            <div class="bg-indigo-500 m-3 rounded-md">
-                <!--the task head-->
-            <div class="flex justify-between mr-3 ml-3">
-                <h4>the title</h4>
-            <h5><select class="bg-indigo-900 text-white rounded-md text-center w-16"></h5>
-                <option selected disabled>edite</option>
-                <option value="To Do">To Do</option>
-                <option value="Doing">Doing</option>
-                <option value="Done">Done</option>
-            </select></h5></div>
-              <!--the task body-->
-            <div class=" m-2 rounded-md h-28">
-                description
-            </div>
-             <!--the task footer-->
-             <div class="flex justify-between mr-2 ml-2">
-                <p class="bg-red-700  rounded-md w-10 text-center">P3</p>
-                <p class="bg-slate-500 w-fit rounded-md text-center">20 / 30 / 2000</p>
-             </div>
-            </div>
+           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center" >To Do</div> 
+           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center" >Doing</div> 
+           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center" >Done</div> 
+           <!--the card to do--> 
+           <div class=" bg-indigo-400 flex flex-col " id="taskContainerToDo">
+            
             
             </div> 
           <!--the card--> 
-          <div class=" bg-indigo-400 flex flex-col ">
-            <div class="bg-indigo-500 m-3 rounded-md">
-                <!--the task head-->
-            <div class="flex justify-between mr-3 ml-3">
-                <h4>the title</h4>
-            <h5><select class="bg-indigo-900 text-white rounded-md text-center w-16"></h5>
-                <option selected disabled>edite</option>
-                <option value="To Do">To Do</option>
-                <option value="Doing">Doing</option>
-                <option value="Done">Done</option>
-            </select></h5></div>
-              <!--the task body-->
-            <div class=" m-2 rounded-md h-28">
-                description
-            </div>
-             <!--the task footer-->
-             <div class="flex justify-between mr-2 ml-2">
-                <p class="bg-red-700  rounded-md w-10 text-center">P3</p>
-                <p class="bg-slate-500 w-fit rounded-md text-center">20 / 30 / 2000</p>
-             </div>
-            </div>
+          <div class=" bg-indigo-400 flex flex-col " id="taskContainerDoing">
+            
             
             </div>  
          <!--the card--> 
-         <div class=" bg-indigo-400 flex flex-col ">
-            <div class="bg-indigo-500 m-3 rounded-md">
-                <!--the task head-->
-            <div class="flex justify-between mr-3 ml-3">
-                <h4>the title</h4>
-            <h5><select class="bg-indigo-900 text-white rounded-md text-center w-16"></h5>
-                <option selected disabled>edite</option>
-                <option value="To Do">To Do</option>
-                <option value="Doing">Doing</option>
-                <option value="Done">Done</option>
-            </select></h5></div>
-              <!--the task body-->
-            <div class=" m-2 rounded-md h-28">
-                description
-            </div>
-             <!--the task footer-->
-             <div class="flex justify-between mr-2 ml-2">
-                <p class="bg-red-700  rounded-md w-10 text-center">P3</p>
-                <p class="bg-slate-500 w-fit rounded-md text-center">20 / 30 / 2000</p>
-             </div>
+         <div class=" bg-indigo-400 flex flex-col w-full h-5/6 " id="taskContainerDone">
+            
             </div>
             
             </div>  
@@ -154,7 +98,7 @@
     
          <div id="error" class="hidden">this place is required</div>
         <!-- The Form -->
-        <div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%] bg-neutral-950 rounded-[20px] h-[800px] items-center">
+        <div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%] bg-indigo-950 rounded-[20px] h-[600px] items-center">
             <form id="taskForm" class="max-w-sm mx-auto" onsubmit="addTask(event)">
                 <div class="text-white font-bold text-center text-lg">
                     <h2>Add a New Task</h2>
@@ -265,17 +209,14 @@
          // Append the card to the appropriate container based on the selected status
          let container;
          if (status === "To Do") {
-             container = document.getElementById('taskContainerToDo');
+            taskContainerToDo.innerHTML += card
          } else if (status === "Doing") {
-             container = document.getElementById('taskContainerDoing');
+            taskContainerDoing.innerHTML += card
          } else if (status === "Done") {
-             container = document.getElementById('taskContainerDone');
+            taskContainerDone.innerHTML += card
          }
  
-         if (container) {
-             container.appendChild(card);
-             sortTasksByPriority(container);  // Sort tasks in the container by priority
-         }
+       
  
          // Clear form fields and hide the form
          document.getElementById('taskForm').reset();
@@ -284,40 +225,42 @@
  
      // Function to create a task card
      function createCard(title, priority, description, dueDate) {
-         const card = document.createElement('div');
-         card.className = 'bg-slate-700 w-64 h-40 flex flex-col justify-between rounded-3xl mb-4 p-4';
-         card.setAttribute('data-priority', priority);  // Add priority attribute for sorting
+       
+        
+        
  
-         card.innerHTML = `
-             <div class="flex justify-between">
-                 <h3 class="text-white font-bold">${title}</h3>
-                 <span class="text-yellow-300">${priority}</span>
+    let card= `
+          <div class=" bg-indigo-400 flex flex-col "  >
+            <div class="bg-indigo-500 m-3 rounded-md">
+                <!--the task head-->
+            <div class="flex justify-between mr-3 ml-3" >
+                <h4 id="title">${title}</h4>
+            <h5><select class="bg-indigo-900 text-white rounded-md text-center w-16"></h5>
+                <option selected disabled>edite</option>
+                <option value="To Do">To Do</option>
+                <option value="Doing">Doing</option>
+                <option value="Done">Done</option>
+            </select></h5></div>
+              <!--the task body-->
+            <div class=" m-2 rounded-md h-28">
+              <h4 id="description">${description}</h4>  
+            </div>
+             <!--the task footer-->
+             <div class="flex justify-between mr-2 ml-2">
+                <p class="bg-red-700  rounded-md w-10 text-center" id="priority">${priority}</p>
+                <p class="bg-slate-500 w-fit rounded-md text-center" id="dueDate">${dueDate}</p>
              </div>
-             <div class="text-gray-200"><p>${description}</p></div>
-             <span class="text-gray-400">Due: ${dueDate}</span>
+            </div>
+            
+            </div> 
+             
          `;
- 
+        
+       
          return card;
      }
  
-     // Function to sort tasks in each container by priority
-     function sortTasksByPriority(container) {
-         // Convert HTMLCollection to an array to sort the tasks
-         const cards = Array.from(container.children);
- 
-         // Sort cards based on priority attribute
-         cards.sort((a, b) => {
-             const priorityA = a.getAttribute('data-priority');
-             const priorityB = b.getAttribute('data-priority');
-             
-             // Define order: P1 (highest), P2, P3 (lowest)
-             const priorityOrder = { 'P1': 1, 'P2': 2, 'P3': 3 };
-             return priorityOrder[priorityA] - priorityOrder[priorityB];
-         });
- 
-         // Append sorted cards back into the container
-         cards.forEach(card => container.appendChild(card));
-     }
+    
  </script>
  
 </body>
