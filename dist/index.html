@@ -89,7 +89,7 @@
             
             </div>  
          <!--the card--> 
-         <div class=" bg-indigo-400 flex flex-col w-full h-5/6 " id="taskContainerDone">
+         <div class=" bg-indigo-400 flex flex-col  " id="taskContainerDone">
             
             </div>
             
@@ -98,7 +98,7 @@
     
          <div id="error" class="hidden">this place is required</div>
         <!-- The Form -->
-        <div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%] bg-indigo-950 rounded-[20px] h-[600px] items-center">
+        <div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%]  rounded-[20px] h-[600px] items-center">
             <form id="taskForm" class="max-w-sm mx-auto" onsubmit="addTask(event)">
                 <div class="text-white font-bold text-center text-lg">
                     <h2>Add a New Task</h2>
@@ -131,7 +131,7 @@
                 <textarea id="taskDescription" rows="4" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                 
                 <button type="submit" class="w-full mt-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Task</button>
-                <button type="button" onclick="toggleForm()" class="w-full mt-3 text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Cancel</button>
+                <button type="button" onclick="toggleForm()" class="w-full mt-3 text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"><i class="fa-solid fa-x"></i></button>
             </form>
         </div>
     </div>
@@ -225,40 +225,48 @@
  
      // Function to create a task card
      function createCard(title, priority, description, dueDate) {
-       
-        
-        
- 
-    let card= `
-          <div class=" bg-indigo-400 flex flex-col "  >
+    let card = `
+        <div id="taskCard" class="flex flex-col h-96">
             <div class="bg-indigo-500 m-3 rounded-md">
                 <!--the task head-->
-            <div class="flex justify-between mr-3 ml-3" >
-                <h4 id="title">${title}</h4>
-            <h5><select class="bg-indigo-900 text-white rounded-md text-center w-16"></h5>
-                <option selected disabled>edite</option>
-                <option value="To Do">To Do</option>
-                <option value="Doing">Doing</option>
-                <option value="Done">Done</option>
-            </select></h5></div>
-              <!--the task body-->
-            <div class=" m-2 rounded-md h-28">
-              <h4 id="description">${description}</h4>  
+                <div class="flex justify-between mr-3 ml-3">
+                    <h4 id="title">${title}</h4>
+                    <h5>
+                        <select class="bg-indigo-900 text-white rounded-md text-center w-16" onchange="updateTaskStatus(this)">
+                            <option selected disabled>edit</option>
+                            <option value="To Do">To Do</option>
+                            <option value="Doing">Doing</option>
+                            <option value="Done">Done</option>
+                        </select>
+                    </h5>
+                </div>
+                <!--the task body-->
+                <div class="m-2 rounded-md h-28">
+                    <h4 id="description">${description}</h4>
+                </div>
+                <!--the task footer-->
+                <div class="flex justify-between mr-2 ml-2">
+                    <p class="bg-red-700 rounded-md w-10 text-center" id="priority">${priority}</p>
+                    <button type="button" id="btn" class="bg-red-600 rounded-sm h-7 text-black w-24 " onclick="deleteCard(this)">Delete</button>
+                    <p class="bg-slate-500 w-fit rounded-md text-center" id="dueDate">${dueDate}</p>
+                </div>
             </div>
-             <!--the task footer-->
-             <div class="flex justify-between mr-2 ml-2">
-                <p class="bg-red-700  rounded-md w-10 text-center" id="priority">${priority}</p>
-                <p class="bg-slate-500 w-fit rounded-md text-center" id="dueDate">${dueDate}</p>
-             </div>
-            </div>
-            
-            </div> 
-             
-         `;
-        
-       
-         return card;
-     }
+        </div>
+    `;
+
+    
+    return card;
+   
+
+}
+function deleteCard(button) {
+    // Find the card element by traversing the DOM
+    const card = button.closest('#taskCard'); // Assuming this is the structure of your card
+    if (card) {
+        card.remove(); // Remove the card from the DOM
+    }
+}
+
  
     
  </script>
