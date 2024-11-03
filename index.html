@@ -1,194 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="src/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        /* Custom utility to hide scrollbars while keeping scrolling enabled */
-        .scrollbar-hidden {
-            scrollbar-width: none; /* Firefox */
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO DO List</title>
+    <link rel="stylesheet" href="src/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body class="h-screen">
+    <header
+      class="flex bg-blue-500 h-[70px] justify-between items-center px-4"
+    >
+      <button class="menu-toggle text-white  md:hidden" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars "></i>
+      </button>
+      <img src="" alt="Logo" class="h-11" />
+      <h1 class="text-[24px] font-bold text-white">TO DO List</h1>
+    </header>
 
-        .scrollbar-hidden::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
-        }
-    </style>
-</head>
-<body>
-   <header class="flex  bg-indigo-400 h-[70px] justify-around items-center">
-    <img src="téléchargement-removebg-preview.png" alt="" class="h-11">
-    <h1 class=" w-[370px] text-[24px] font-bold">TO DO List</h1>
-    <div class="flex items-center w-full sm:w-[600px] bg-white h-[40px] rounded-[20px] px-3">
-        <i class="fa-solid fa-magnifying-glass text-gray-500 mr-2"></i>
-        <input type="text" placeholder="search" class="w-full h-full outline-none">
-    </div>
-   </header>
-   <section>
-    <div class=" h-screen grid grid-cols-[400px_1fr] ">
-        <div class="bg-indigo-700 ">
-            <div class="top">
-                <div class="bg-indigo-500 flex justify-between items-center mt-2 h-11 rounded mr-3 ml-3">
-                    <h3 class="text-lg pl-7">Menu</h3>
-                    <i class="fa-solid fa-ellipsis pr-8"></i>
-                </div>
-
-                <h4 class="mt-3 pl-3 text-lg">tasks</h4>
-                <div class="ml-8 mr-8 flex flex-col justify-between h-52 pt-3">
-                    <div class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg">
-                        <p><i class="fa-solid fa-minus"></i> <span>today</span></p>
-                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
-                    </div>
-        
-                    <div class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg">
-                        <p><i class="fa-solid fa-grip-lines"></i><span>Upcoming</span></p>
-                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
-                    </div>
-
-                    <div class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg">
-                        <p><i class="fa-solid fa-calendar-days"></i> <span>Calender</span></p>
-                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>    
-                    </div>
-                </div>
-             </div>
-             <div class=" bottom mt-16">
-                <h2 class="text-lg pl-3 mb-5">Lists</h2>
-                <div class="bg-slate-50 flex flex-col h-48 justify-around mr-8 ml-8 rounded-[20px]">
-                    <div class="flex justify-between mr-3">
-                        <p class="bg-red-600 w-14 rounded-[20px] ml-3 text-center">P1</p>
-                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
-                    </div>
-                    <div class="flex justify-between mr-3">
-                        <p class="bg-orange-600 w-14 rounded-[20px] ml-3 text-center">P2</p>
-                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
-                    </div>
-                    <div class="flex justify-between mr-3">
-                        <p class="bg-green-600 w-14 rounded-[20px] ml-3 text-center">P3</p>
-                        <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>    
-                    </div>
-                    <div class="bg-slate-600 text-center mr-14 ml-14 h-12 flex justify-around items-center rounded-[20px]">
-                        <button id="openFormButton" type="button" class="text-lg hover:bg-slate-600" onclick="toggleForm()"> <i class="fa-solid fa-plus"></i> add a list</button>
-                    </div>
-                </div>
-             </div>
-        </div>
-        <div class="bg-slate-500 grid grid-cols-3  gap-x-8 grid-rows-[10vh_70vh] ">
-           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center" >To Do</div> 
-           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center" >Doing</div> 
-           <div class="bg-indigo-900 text-white rounded-md mt-4 h- text-center flex items-center justify-center" >Done</div> 
-           <!--the card to do--> 
-           <div class=" bg-indigo-400 flex flex-col " id="taskContainerToDo">
-            
-            
-            </div> 
-          <!--the card--> 
-          <div class=" bg-indigo-400 flex flex-col " id="taskContainerDoing">
-            
-            
-            </div>  
-         <!--the card--> 
-         <div class=" bg-indigo-400 flex flex-col  " id="taskContainerDone">
-            
+    <section class="flex  h-[624px] bg-[url('../images/youcode.jpg')]">
+      <div class="bg-indigo-700 w-full max-w-xs hidden lg:block " id="sidebar">
+        <div class="top px-3 py-2">
+          <div
+            class="bg-indigo-500 flex justify-between items-center mt-2 h-11 rounded px-3"
+          >
+            <h3 class="text-lg text-white">Menu</h3>
+            <i class="fa-solid fa-ellipsis text-white"></i>
+          </div>
+          <h4 class="mt-3 text-lg text-white">Tasks</h4>
+          <div class="flex flex-col gap-2 mt-3">
+            <div
+              class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg px-3 text-white"
+            >
+              <p><i class="fa-solid fa-minus"></i> <span>Today</span></p>
+              <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
             </div>
-            
-            </div>  
+            <div
+              class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg px-3 text-white"
+            >
+              <p><i class="fa-solid fa-grip-lines"></i><span>Upcoming</span></p>
+              <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
+            </div>
+            <div
+              class="flex justify-between bg-indigo-800 h-10 items-center rounded-lg px-3 text-white"
+            >
+              <p>
+                <i class="fa-solid fa-calendar-days"></i> <span>Calendar</span>
+              </p>
+              <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
+            </div>
+          </div>
         </div>
-    
-         <div id="error" class="hidden">this place is required</div>
-        <!-- The Form -->
-        <div id="myform" class="hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10 w-[500px] max-w-[80%]  rounded-[20px] h-[600px] items-center">
-            <form id="taskForm" class="max-w-sm mx-auto" onsubmit="addTask(event)">
-                <div class="text-white font-bold text-center text-lg">
-                    <h2>Add a New Task</h2>
-                </div>
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                    <input type="text" id="taskTitle" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                </div>
-                
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                <select id="taskStatus" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <option selected disabled>Choose a status</option>
-                    <option value="To Do">To Do</option>
-                    <option value="Doing">Doing</option>
-                    <option value="Done">Done</option>
-                </select>
-                
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priority</label>
-                <select id="taskPriority" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " required >
-                    <option selected disabled>Choose the priority</option>
-                    <option value="P1">P1</option>
-                    <option value="P2">P2</option>
-                    <option value="P3">P3</option>
-                </select>
-                
-                <div><label for="due-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due Date:</label>
-                <input type="date" id="due-date" name="due-date" required class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></div> 
-                
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <textarea id="taskDescription" rows="4" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
-                
-                <button type="submit" class="w-full mt-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Task</button>
-                <button type="button" onclick="toggleForm()" class="w-full mt-3 text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"><i class="fa-solid fa-x"></i></button>
-            </form>
+
+        <div class="bottom mt-10 px-3">
+          <h2 class="text-lg text-white mb-5">Lists</h2>
+          <div class="bg-slate-50 flex flex-col p-4 rounded-[20px] gap-4">
+            <div class="flex justify-between items-center">
+              <p class="bg-red-600 w-14 rounded-[20px] text-center text-white">
+                P1
+              </p>
+              <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
+            </div>
+            <div class="flex justify-between items-center">
+              <p
+                class="bg-orange-600 w-14 rounded-[20px] text-center text-white"
+              >
+                P2
+              </p>
+              <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
+            </div>
+            <div class="flex justify-between items-center">
+              <p
+                class="bg-green-600 w-14 rounded-[20px] text-center text-white"
+              >
+                P3
+              </p>
+              <p class="bg-slate-300 rounded-[20px] w-12 text-center">12</p>
+            </div>
+            <div class="flex justify-around gap-2">
+              <button
+                type="button"
+                class="bg-slate-500 text-white rounded-md px-3 py-1"
+                onclick="toggleForm()"
+              >
+                + Add List
+              </button>
+              <button
+                type="button"
+                class="bg-slate-500 text-white rounded-md px-3 py-1"
+              >
+                Lists
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div
+        class="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 h-80 ">
+        <div
+          id="taskContainerToDo"
+          class="bg-indigo-900 text-white rounded-md p-4 text-center"
+        >
+          To Do
+        </div>
+        <div
+          id="taskContainerDoing"
+          class="bg-indigo-900 text-white rounded-md p-4 text-center"
+        >
+          Doing
+        </div>
+        <div
+          id="taskContainerDone"
+          class="bg-indigo-900 text-white rounded-md p-4 text-center"
+        >
+          Done
+        </div>
+      </div>
+    </section>
+
+    <!-- Form for adding tasks -->
+    <div
+      id="myform"
+      class="hidden fixed inset-0 flex items-center justify-center bg-opacity-50 z-50"
+    >
+      <div class="bg-white rounded-lg p-6 max-w-xs w-full">
+        <form id="taskForm" onsubmit="addTask(event)">
+          <h2 class="text-lg font-bold text-center mb-4">Add a New Task</h2>
+          <label class="block mb-2 text-sm font-medium">Title</label>
+          <input
+            type="text"
+            id="taskTitle"
+            required
+            class="block w-full p-2 mb-4 border rounded"
+          />
+
+          <label class="block mb-2 text-sm font-medium">Status</label>
+          <select
+            id="taskStatus"
+            required
+            class="block w-full p-2 mb-4 border rounded"
+          >
+            <option disabled selected>Choose a status</option>
+            <option value="To Do">To Do</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option>
+          </select>
+
+          <label class="block mb-2 text-sm font-medium">Priority</label>
+          <select
+            id="taskPriority"
+            required
+            class="block w-full p-2 mb-4 border rounded"
+          >
+            <option disabled selected>Choose priority</option>
+            <option value="P1">P1</option>
+            <option value="P2">P2</option>
+            <option value="P3">P3</option>
+          </select>
+
+          <label class="block mb-2 text-sm font-medium">Due Date</label>
+          <input
+            type="date"
+            id="due-date"
+            required
+            class="block w-full p-2 mb-4 border rounded"
+          />
+
+          <label class="block mb-2 text-sm font-medium">Description</label>
+          <textarea
+            id="taskDescription"
+            rows="4"
+            class="block w-full p-2 mb-4 border rounded"
+          ></textarea>
+
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 rounded"
+          >
+            Add Task
+          </button>
+          <button
+            type="button"
+            onclick="toggleForm()"
+            class="w-full bg-red-600 text-white py-2 rounded mt-2"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
     </div>
-   </section>
 
-   <script>
-    // Function to toggle the visibility of the form
-function toggleForm() {
-    const form = document.getElementById('myform');
-    form.classList.toggle('hidden');
-}
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden");
+      }
 
-// Validation function to check form inputs
-function validateForm() {
-    const title = document.getElementById('taskTitle').value;
-    const description = document.getElementById('taskDescription').value;
-    const dueDate = document.getElementById('due-date').value;
-    const priority = document.getElementById('taskPriority').value;
-    const status = document.getElementById('taskStatus').value;
+      function toggleForm() {
+        const form = document.getElementById("myform");
+        form.classList.toggle("hidden");
+      }
 
-    const titleRegex = /^[A-Za-z\s]{1,20}$/;
-    let isValid = true;
-    let errorMessage = "";
+      function validateForm() {
+        const title = document.getElementById("taskTitle").value;
+        const description = document.getElementById("taskDescription").value;
+        const dueDate = document.getElementById("due-date").value;
+        const priority = document.getElementById("taskPriority").value;
+        const status = document.getElementById("taskStatus").value;
 
-    if (!title.match(titleRegex)) {
-        errorMessage += "Title must only contain letters and be 1-20 characters long.\n";
-        isValid = false;
-    }
+        const titleRegex = /^[A-Za-z\s]{1,20}$/;
+        let isValid = true;
+        let errorMessage = "";
 
-    if (description.length < 2 || description.length > 80) {
-        errorMessage += "Description must be between 2 and 80 characters.\n";
-        isValid = false;
-    }
+        if (!title.match(titleRegex)) {
+          errorMessage +=
+            "Title must only contain letters and be 1-20 characters long.\n";
+          isValid = false;
+        }
 
-    if (!dueDate) {
-        errorMessage += "Please select a due date.\n";
-        isValid = false;
-    }
+        if (description.length < 2 || description.length > 80) {
+          errorMessage += "Description must be between 2 and 80 characters.\n";
+          isValid = false;
+        }
 
-    if (!priority) {
-        errorMessage += "Please select a priority level.\n";
-        isValid = false;
-    }
+        if (!dueDate) {
+          errorMessage += "Please select a due date.\n";
+          isValid = false;
+        }
 
-    if (status === "" || status === "Select status") {
-        errorMessage += "Please select a valid status.\n";
-        isValid = false;
-    }
+        if (!priority) {
+          errorMessage += "Please select a priority level.\n";
+          isValid = false;
+        }
 
-    if (!isValid) {
-        alert(errorMessage);
-    }
+        if (status === "" || status === "Select status") {
+          errorMessage += "Please select a valid status.\n";
+          isValid = false;
+        }
 
-    return isValid;
-}
+        if (!isValid) {
+          alert(errorMessage);
+        }
 
-// Function to add a task
+        return isValid;
+      }
+
+      // Function to add a task
 function addTask(event) {
     event.preventDefault();
 
@@ -294,9 +355,14 @@ function updateTaskStatus(selectElement) {
     newContainer.appendChild(card); // Append the card to the new container
 }
 
+
+function showTaskList() {
+    const form = document.getElementById('list');
+    form.classList.toggle('hidden');
+}
+
+
  
-    
- </script>
- 
-</body>
+    </script>
+  </body>
 </html>
